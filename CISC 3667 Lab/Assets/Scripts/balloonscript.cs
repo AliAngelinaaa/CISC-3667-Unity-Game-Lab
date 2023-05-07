@@ -14,6 +14,7 @@ public class balloonscript : MonoBehaviour
     public Animator animator;
     public GameObject balloonPrefab;
     public ScoreManager scoreManager;
+    private bool isIncreasing = true;
 
 
     private float screenWidth;
@@ -21,9 +22,12 @@ public class balloonscript : MonoBehaviour
     private Vector3 targetPosition;
     private int score = 0;
 
-    public float balloonSize = 1.0f;
-    private float balloonGrowthRate = 0.1f;
-    private float maxBalloonSize = 2.0f;
+    public float balloonSize = 1.0f; 
+    private float minBalloonSize = 0.5f;
+    private float maxBalloonSize = 2.0f; 
+    private float balloonGrowthRate = 0.05f;
+    private float maxGrowthRate = 0.2f; 
+    private float minGrowthRate = 0.01f; 
 
     // Start is called before the first frame update
     void Start()
@@ -72,10 +76,29 @@ public class balloonscript : MonoBehaviour
     }
 
     private void BalloonSizeIncrease(){
-        if (balloonSize < maxBalloonSize)
+        if (isIncreasing)
         {
-            balloonSize += balloonGrowthRate;
-            transform.localScale = new Vector3(balloonSize, balloonSize, 1.0f);
+            if (balloonSize < maxBalloonSize)
+            {
+                balloonSize += balloonGrowthRate;
+                transform.localScale = new Vector3(balloonSize, balloonSize, 1.0f);
+            }
+            else
+            {
+                isIncreasing = false;
+            }
+        }
+        else
+        {
+            if (balloonSize > minBalloonSize)
+            {
+                balloonSize -= balloonGrowthRate;
+                transform.localScale = new Vector3(balloonSize, balloonSize, 1.0f);
+            }
+            else
+            {
+                isIncreasing = true;
+            }
         }
     }
     void OnCollisionEnter2D(Collision2D collision)

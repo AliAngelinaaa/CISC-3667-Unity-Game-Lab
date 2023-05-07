@@ -74,4 +74,45 @@ public class ScoreManager : MonoBehaviour
         scoreText = scoreDisplay;
         scoreDisplay.text = "Score: " + score.ToString();
     }
+
+    public void SaveScoreToLeaderboard()
+    {
+        // Retrieve the player name from PlayerPrefs
+        string playerName = PlayerPrefs.GetString("PlayerName", "Unknown");
+
+        // Get the current high scores
+        List<int> highScores = GetHighScores();
+
+        // Add the player's score to the list
+        highScores.Add(score);
+
+        // Sort the high scores in decreasing order of score
+        highScores.Sort((x, y) => y.CompareTo(x));
+
+        // Save the updated high scores to PlayerPrefs
+        for (int i = 0; i < highScores.Count && i < 5; i++)
+        {
+            PlayerPrefs.SetInt("HighScore" + (i+1), highScores[i]);
+        }
+
+        // Save the player's name and score to PlayerPrefs
+        PlayerPrefs.SetString("PlayerName", playerName);
+        PlayerPrefs.SetInt("PlayerScore", score);
+    }
+
+    private List<int> GetHighScores()
+    {
+        List<int> highScores = new List<int>();
+
+        for (int i = 1; i <= 5; i++)
+        {
+            int score = PlayerPrefs.GetInt("HighScore" + i, 0);
+            if (score > 0)
+            {
+                highScores.Add(score);
+            }
+        }
+
+        return highScores;
+    }
 }

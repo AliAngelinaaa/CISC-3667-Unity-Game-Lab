@@ -35,10 +35,6 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene("level 1");
     }
     
-    public void difficultmode(){
-        SceneManager.LoadScene("hard mode");
-    }
-
     public void reloadScene(){
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
@@ -60,5 +56,9 @@ public class GameController : MonoBehaviour
             Destroy(scoreManager.gameObject);
         }
         SceneManager.LoadScene("menu");
+    }
+
+    public void leaderboard(){
+        SceneManager.LoadScene("LeaderBoard");
     }
 }

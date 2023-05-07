@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/hard mode.unity
+    path: Assets/Scenes/LeaderBoard.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/menu.unity
@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/level 2.unity
     guid: e64794fb0f785164d90882958ce61aef
+  - enabled: 1
+    path: Assets/Scenes/level 3.unity
+    guid: 823e5bfb6eae29342b090c7467ccb3e3
   m_configObjects: {}
