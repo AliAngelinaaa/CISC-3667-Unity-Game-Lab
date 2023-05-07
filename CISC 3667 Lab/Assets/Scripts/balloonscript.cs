@@ -10,14 +10,20 @@ public class balloonscript : MonoBehaviour
     [SerializeField] AudioClip pop;
     [SerializeField] float speed = 3.0f;
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] bool isLevel2;
     public Animator animator;
     public GameObject balloonPrefab;
     public ScoreManager scoreManager;
+
 
     private float screenWidth;
     private float screenHeight;
     private Vector3 targetPosition;
     private int score = 0;
+
+    public float balloonSize = 1.0f;
+    private float balloonGrowthRate = 0.1f;
+    private float maxBalloonSize = 2.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +44,14 @@ public class balloonscript : MonoBehaviour
 
         // Generate a random position within the screen
         targetPosition = new Vector3(Random.Range(-screenWidth, screenWidth), Random.Range(-screenHeight, screenHeight), 0.0f);
+
+        if(isLevel2)
+        {
+            // Invoke the BalloonSizeIncrease method to increase the size of the balloon every X seconds
+            InvokeRepeating("BalloonSizeIncrease", 0f, 1f);
+        }
+
+
     }
 
     // Update is called once per frame
@@ -57,24 +71,43 @@ public class balloonscript : MonoBehaviour
         }
     }
 
+    private void BalloonSizeIncrease(){
+        if (balloonSize < maxBalloonSize)
+        {
+            balloonSize += balloonGrowthRate;
+            transform.localScale = new Vector3(balloonSize, balloonSize, 1.0f);
+        }
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag =="pin")
-        {            
-            AudioSource.PlayClipAtPoint(pop, transform.position);
-            animator.SetBool("isPopping", true);
-            Destroy(gameObject, 0.1f);
-            scoreManager.AddScore();
-            StartCoroutine(RespawnBalloon());
+        {
+            if(isLevel2 && balloonSize >= maxBalloonSize)
+            {
+                // Balloon is too big, don't give any points
+                Destroy(gameObject, 0.1f);
+                StartCoroutine(RespawnBalloon());
+            }
+            else
+            {
+                AudioSource.PlayClipAtPoint(pop, transform.position);
+                animator.SetBool("isPopping", true);
+                Destroy(gameObject, 0.1f);
+                if(isLevel2)
+                {
+                    scoreManager.AddScore(Mathf.RoundToInt(10 * (1.0f - balloonSize/maxBalloonSize)));
+                }
+                else
+                {
+                    scoreManager.AddScore();
+                }
+                StartCoroutine(RespawnBalloon());
+            }
         }
     }
 
     IEnumerator RespawnBalloon()
     {
-        Debug.Log("Respawning balloon");
-        // Wait for 1 second before spawning a new balloon
-        
-        // Create a new instance of the balloon prefab at a random position within the screen
         Vector3 randomPosition = new Vector3(Random.Range(-screenWidth, screenWidth), Random.Range(-screenHeight, screenHeight), 0.0f);
         GameObject newBalloon = Instantiate(balloonPrefab, randomPosition, Quaternion.identity);
 
@@ -85,6 +118,14 @@ public class balloonscript : MonoBehaviour
             newScoreText.text = "Score: " + score.ToString();
         }
 
-        yield return null; 
+        // Set the size of the new balloon to be the same as the old balloon's starting size
+        balloonscript newBalloonScript = newBalloon.GetComponent<balloonscript>();
+        if (newBalloonScript != null)
+        {
+            newBalloonScript.balloonSize = balloonSize;;
+        }
+            yield return null;
+
     }
+
 }

@@ -26,7 +26,6 @@ public class script : MonoBehaviour
         screenWidth = screenHeight * mainCamera.aspect;
         Debug.Log("Screen width: " + screenWidth);
         Debug.Log("Screen height: " + screenHeight);
-
     }
 
     // Update is called once per frame
@@ -66,6 +65,15 @@ public class script : MonoBehaviour
             // Change the direction of the pin if the player is facing left
             pinScript.speed *= -1;
             newPin.transform.Rotate(0f, 180f, 0f);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        // Check for collision with player
+        if (other.gameObject.CompareTag("ghost"))
+        {
+            Destroy(other.gameObject);
         }
     }
 
