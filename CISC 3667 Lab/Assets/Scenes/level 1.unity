@@ -531,6 +531,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &329872714 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5685827968006781370, guid: bc582fd383eed9a448821f8401a7dfc0, type: 3}
+  m_PrefabInstance: {fileID: 5685827967639164462}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de5e9450bad5504d872539572a0f331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &416853024
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +575,6 @@ MonoBehaviour:
   scoreText: {fileID: 922129664}
   score: 0
   balloonsPopped: 0
-  islevel1: 1
 --- !u!114 &416853026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,8 +587,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e27880a6dc64d647af506c6d8d241ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreManager: {fileID: 0}
-  balloon: {fileID: 0}
+  scoreManager: {fileID: 416853025}
+  balloon: {fileID: 329872714}
 --- !u!4 &416853027
 Transform:
   m_ObjectHideFlags: 0
@@ -1800,6 +1810,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2002253786
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4292346963282787089, guid: 8fafd9e76a0407a45acb27fd5e0238e4, type: 3}
+      propertyPath: m_Name
+      value: AudioSource
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292346963282787102, guid: 8fafd9e76a0407a45acb27fd5e0238e4, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292346963282787102, guid: 8fafd9e76a0407a45acb27fd5e0238e4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 425.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292346963282787102, guid: 8fafd9e76a0407a45acb27fd5e0238e4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 193
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292346963282787102, guid: 8fafd9e76a0407a45acb27fd5e0238e4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292346963282787102, guid: 8fafd9e76a0407a45acb27fd5e0238e4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292346963282787102, guid: 8fafd9e76a0407a45acb27fd5e0238e4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292346963282787102, guid: 8fafd9e76a0407a45acb27fd5e0238e4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292346963282787102, guid: 8fafd9e76a0407a45acb27fd5e0238e4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292346963282787102, guid: 8fafd9e76a0407a45acb27fd5e0238e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292346963282787102, guid: 8fafd9e76a0407a45acb27fd5e0238e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292346963282787102, guid: 8fafd9e76a0407a45acb27fd5e0238e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8fafd9e76a0407a45acb27fd5e0238e4, type: 3}
 --- !u!1001 &5685827967639164462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1859,6 +1926,10 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 922129664}
+    - target: {fileID: 5685827968006781370, guid: bc582fd383eed9a448821f8401a7dfc0, type: 3}
+      propertyPath: balloonSize
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5685827968006781370, guid: bc582fd383eed9a448821f8401a7dfc0, type: 3}
       propertyPath: scoreManager
       value: 

@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "level 1")
         {
             scoreManager.score=0;
-            balloon.balloonSize = 1.0f;
+            //balloon.balloonSize = 1.0f;
         }
     }
 
@@ -41,13 +41,15 @@ public class GameController : MonoBehaviour
     }
 
     public void pause(){
-        Time.timeScale = 0f;
-        isPaused = true;
+        if(!isPaused)
+            Time.timeScale = 0f;
+            isPaused = true;
     }
 
     public void resume(){
-        Time.timeScale = 1f;
-        isPaused = false;
+        if(isPaused)
+            Time.timeScale = 1f;
+            isPaused = false;
     }
 
     public void remenu(){

@@ -23,6 +23,7 @@ public class ScoreManager : MonoBehaviour
             if(islevel1)
                 score = 0;
                 balloonsPopped = 0;
+                islevel1 = false;
         }
         else
         {
@@ -30,39 +31,39 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if(!islevel1)
+        {
+            // If this is not level 1, retrieve the score from PlayerPrefs
+            score = PlayerPrefs.GetInt("Score", 0);
+            UpdateScoreDisplay(scoreText);
+        }
+    }
+    
+
     public void AddScore()
     {
         score++;
-        scoreText.text = "Score: " + score.ToString();
         balloonsPopped++;
+        //scoreText.text = "Score: " + score.ToString();
         UpdateScoreDisplay(scoreText);
 
         if (score == 10)
         {
             PlayerPrefs.SetInt("Score", score);
             SceneManager.LoadScene("level 2");
-        }
-
-        if (score == 30)
-        {
-            SceneManager.LoadScene("level 3");
         }
     }
 
     public void AddScore(int scoreValue)
     {
         score += scoreValue;
-        scoreText.text = "Score: " + score.ToString();
-        score++;
+        //scoreText.text = "Score: " + score.ToString();
+        balloonsPopped++;
         UpdateScoreDisplay(scoreText);
 
-        if (score == 10)
-        {
-            PlayerPrefs.SetInt("Score", score);
-            SceneManager.LoadScene("level 2");
-        }
-
-        if (score == 30)
+        if (score == 50)
         {   
             PlayerPrefs.SetInt("Score", score);
             SceneManager.LoadScene("level 3");
@@ -112,7 +113,6 @@ public class ScoreManager : MonoBehaviour
                 highScores.Add(score);
             }
         }
-
         return highScores;
     }
 }

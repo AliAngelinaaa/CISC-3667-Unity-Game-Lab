@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Level3Controller : MonoBehaviour
 {
-    private GameObject panel;
+    [SerializeField] GameObject gameOverMenu;
     // Start is called before the first frame update
     void Start()
     {
-        panel = GameObject.Find("gameOverMenu");
-        panel.SetActive(false);
+        gameOverMenu.SetActive(false);
     }
 
     // Update is called once per frame
