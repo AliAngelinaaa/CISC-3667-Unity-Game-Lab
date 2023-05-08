@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    private bool isPaused = false;
     public ScoreManager scoreManager;
     public balloonscript balloon;
     // Start is called before the first frame update
@@ -41,15 +40,11 @@ public class GameController : MonoBehaviour
     }
 
     public void pause(){
-        if(!isPaused)
-            Time.timeScale = 0f;
-            isPaused = true;
+        Time.timeScale = 0f;
     }
 
     public void resume(){
-        if(isPaused)
-            Time.timeScale = 1f;
-            isPaused = false;
+        Time.timeScale = 1f;
     }
 
     public void remenu(){
@@ -58,6 +53,14 @@ public class GameController : MonoBehaviour
             Destroy(scoreManager.gameObject);
         }
         SceneManager.LoadScene("menu");
+    }
+
+    public void toggle(){
+        if(gameObject.activeSelf == true){
+            gameObject.SetActive(false);
+        }else{
+            gameObject.SetActive(true);
+        }
     }
 
     public void leaderboard(){

@@ -37,7 +37,7 @@ public class ScoreManager : MonoBehaviour
         {
             // If this is not level 1, retrieve the score from PlayerPrefs
             score = PlayerPrefs.GetInt("Score", 0);
-            UpdateScoreDisplay(scoreText);
+            UpdateScoreDisplay();
         }
     }
     
@@ -47,7 +47,7 @@ public class ScoreManager : MonoBehaviour
         score++;
         balloonsPopped++;
         //scoreText.text = "Score: " + score.ToString();
-        UpdateScoreDisplay(scoreText);
+        UpdateScoreDisplay();
 
         if (score == 10)
         {
@@ -61,19 +61,18 @@ public class ScoreManager : MonoBehaviour
         score += scoreValue;
         //scoreText.text = "Score: " + score.ToString();
         balloonsPopped++;
-        UpdateScoreDisplay(scoreText);
+        UpdateScoreDisplay();
 
-        if (score == 50)
+        if (score == 30)
         {   
             PlayerPrefs.SetInt("Score", score);
             SceneManager.LoadScene("level 3");
         }
     }
 
-    public void UpdateScoreDisplay(TextMeshProUGUI scoreDisplay)
+    public void UpdateScoreDisplay()
     {
-        scoreText = scoreDisplay;
-        scoreDisplay.text = "Score: " + score.ToString();
+        scoreText.text = "Score: " + score.ToString();
     }
 
     public void SaveScoreToLeaderboard()

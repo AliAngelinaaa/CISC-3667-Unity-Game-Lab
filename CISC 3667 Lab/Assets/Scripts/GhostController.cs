@@ -8,7 +8,7 @@ public class GhostController : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] Animator animator;
-    [SerializeField] float speed = 5f;
+    [SerializeField] float speed = 4f;
     [SerializeField] int damage = 1;
     [SerializeField] GameObject gameOverMenu;
     [SerializeField] ScoreManager scoreManager;

@@ -16,16 +16,18 @@ public class VolumeSettings : MonoBehaviour
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
     }
 
-    void Start() //updates volume to loaded volume loaded by load volume in AudioManager
+    void Start()
     {
         // sets volume to 1f if volume not retrieved
         musicSlider.value = PlayerPrefs.GetFloat(AudioManager.MUSIC_KEY, 1f); 
+        
     }
 
     //when scene exited, saves volume values
     void OnDisable()
     {
         PlayerPrefs.SetFloat(AudioManager.MUSIC_KEY, musicSlider.value);
+        
     }
 
     // Sets volume of settings by setting float on mixers

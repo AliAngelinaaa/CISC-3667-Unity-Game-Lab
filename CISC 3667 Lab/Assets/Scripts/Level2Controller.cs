@@ -11,7 +11,7 @@ public class Level2Controller : MonoBehaviour
     {
         int score = PlayerPrefs.GetInt("Score"); // retrieve the score from PlayerPrefs
         ScoreManager.instance.score = score; // update the score in ScoreManager
-        ScoreManager.instance.UpdateScoreDisplay(scoreText);
+        ScoreManager.instance.UpdateScoreDisplay();
     }
 
     // Update is called once per frame
